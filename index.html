@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Documental | R∴L∴S∴ Fortaleza y Templanza No. 02</title>
+    <style>
+        :root {
+            --azul-principal: #3a4a9f;
+            --azul-claro: #5c6bc0;
+            --azul-oscuro: #2c387e;
+            --dorado: #c9a227;
+            --dorado-claro: #d4af37;
+            --gris-claro: #f5f5f5;
+            --gris-medio: #e0e0e0;
+            --texto: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', Georgia, serif;
+            color: var(--texto);
+            line-height: 1.6;
+            background: var(--gris-claro);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-principal) 50%, var(--azul-claro) 100%);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .emblemas {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .emblema {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+        }
+        
+        .titulo-logia {
+            font-size: 1.1rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+            opacity: 0.9;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitulo {
+            font-size: 1.4rem;
+            color: var(--dorado-claro);
+            font-weight: normal;
+            margin-top: 0.75rem;
+            letter-spacing: 2px;
+        }
+        
+        .jurisdiccion {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: 1rem;
+        }
+        
+        /* Main */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem 1rem;
+            flex: 1;
+            width: 100%;
+        }
+        
+        /* Intro */
+        .intro {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 0 1rem;
+        }
+        
+        .intro p {
+            font-size: 1.15rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Secciones por grado */
+        .secciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .seccion {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-top: 4px solid var(--azul-principal);
+        }
+        
+        .seccion:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        
+        .seccion-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-claro) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+        
+        .seccion-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+        
+        .seccion h2 {
+            font-size: 1.2rem;
+            color: var(--azul-oscuro);
+            margin-bottom: 0.75rem;
+            font-family: Arial, sans-serif;
+        }
+        
+        .seccion p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+        
+        .btn-acceso {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-oscuro) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: Arial, sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(58,74,159,0.25);
+        }
+        
+        .btn-acceso:hover {
+            background: linear-gradient(135deg, var(--azul-claro) 0%, var(--azul-principal) 100%);
+            box-shadow: 0 5px 15px rgba(58,74,159,0.35);
+        }
+        
+        .btn-acceso svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+        
+        /* Grados específicos - bordes de color */
+        .seccion.general {
+            border-top-color: var(--dorado);
+        }
+        
+        .seccion.general .seccion-icon {
+            background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-claro) 100%);
+        }
+        
+        .seccion.aprendiz {
+            border-top-color: #43a047;
+        }
+        
+        .seccion.aprendiz .seccion-icon {
+            background: linear-gradient(135deg, #388e3c 0%, #66bb6a 100%);
+        }
+        
+        .seccion.companero {
+            border-top-color: #1976d2;
+        }
+        
+        .seccion.companero .seccion-icon {
+            background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
+        }
+        
+        .seccion.maestro {
+            border-top-color: #c62828;
+        }
+        
+        .seccion.maestro .seccion-icon {
+            background: linear-gradient(135deg, #b71c1c 0%, #e53935 100%);
+        }
+        
+        /* Nota */
+        .nota {
+            margin-top: 2.5rem;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-left: 4px solid var(--dorado);
+            border-radius: 0 8px 8px 0;
+            text-align: center;
+        }
+        
+        .nota p {
+            color: #856404;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--azul-oscuro);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: auto;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+        
+        .oriente {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            header {
+                padding: 2rem 1rem;
+            }
+            
+            .emblemas {
+                gap: 1.5rem;
+            }
+            
+            .emblema {
+                width: 80px;
+                height: 80px;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .subtitulo {
+                font-size: 1.2rem;
+            }
+            
+            .secciones {
+                grid-template-columns: 1fr;
+            }
+            
+            .seccion {
+                padding: 1.5rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="emblemas">
+                <img src="EMU.jpg" alt="Emblema EMU" class="emblema" onerror="this.style.display='none'">
+                <img src="FyT.jpg" alt="Escudo Fortaleza y Templanza" class="emblema" onerror="this.style.display='none'">
+            </div>
+            <p class="titulo-logia">Resp∴ Log∴ Simb∴</p>
+            <h1>Fortaleza y Templanza No. 02</h1>
+            <p class="subtitulo">Biblioteca Documental</p>
+            <p class="jurisdiccion">Or∴ de la Ciudad de México · Entidad Masónica Universal</p>
+        </div>
+    </header>
+    
+    <main>
+        <div class="intro">
+            <p>Repositorio institucional de documentos para los QQ∴HH∴ del Taller. Selecciona la sección correspondiente a tu Grado.</p>
+        </div>
+        
+        <div class="secciones">
+            <div class="seccion general">
+                <div class="seccion-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                </div>
+                <h2>General</h2>
+                <p>Reglamento, Principios Constitutivos EMU, Cuadro Logial y documentación institucional para todos los HH∴</p>
+                <a href="#LINK_GENERAL" class="btn-acceso">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Acceder
+                </a>
+            </div>
+            
+            <div class="seccion aprendiz">
+                <div class="seccion-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                </div>
+                <h2>Cámara de Aprendiz</h2>
+                <p>Liturgia del Primer Grado, catecismo y material de instrucción para AAp∴</p>
+                <a href="#LINK_APRENDIZ" class="btn-acceso">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Acceder
+                </a>
+            </div>
+            
+            <div class="seccion companero">
+                <div class="seccion-icon">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                </div>
+                <h2>Cámara de Compañero</h2>
+                <p>Liturgia del Segundo Grado y material de instrucción para CComp∴</p>
+                <a href="#LINK_COMPANERO" class="btn-acceso">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Acceder
+                </a>
+            </div>
+            
+            <div class="seccion maestro">
+                <div class="seccion-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <h2>Cámara de Maestro</h2>
+                <p>Liturgia del Tercer Grado, Planchas de Secretaría y documentación de Oficialidad para MM∴MM∴</p>
+                <a href="#LINK_MAESTRO" class="btn-acceso">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Acceder
+                </a>
+            </div>
+        </div>
+        
+        <div class="nota">
+            <p>Cada sección requiere permisos de acceso específicos. Si no puedes acceder, contacta al H∴ Secretario.</p>
+        </div>
+    </main>
+    
+    <footer>
+        <p>R∴L∴S∴ Fortaleza y Templanza No. 02</p>
+        <p class="oriente">Or∴ de la Ciudad de México · Entidad Masónica Universal</p>
+    </footer>
+</body>
+</html>
