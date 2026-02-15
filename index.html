@@ -1,383 +1,691 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Documental | R∴L∴S∴ Fortaleza y Templanza No. 02</title>
-    <style>
-        :root {
-            --azul-principal: #3a4a9f;
-            --azul-claro: #5c6bc0;
-            --azul-oscuro: #2c387e;
-            --dorado: #c9a227;
-            --dorado-claro: #d4af37;
-            --gris-claro: #f5f5f5;
-            --gris-medio: #e0e0e0;
-            --texto: #333;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Times New Roman', Georgia, serif;
-            color: var(--texto);
-            line-height: 1.6;
-            background: var(--gris-claro);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-principal) 50%, var(--azul-claro) 100%);
-            color: white;
-            padding: 2.5rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-        
-        .header-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .emblemas {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2.5rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .emblema {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
-            background: white;
-            border-radius: 50%;
-            padding: 10px;
-        }
-        
-        .titulo-logia {
-            font-size: 1.1rem;
-            font-weight: normal;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-            opacity: 0.9;
-        }
-        
-        header h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .subtitulo {
-            font-size: 1.4rem;
-            color: var(--dorado-claro);
-            font-weight: normal;
-            margin-top: 0.75rem;
-            letter-spacing: 2px;
-        }
-        
-        .jurisdiccion {
-            font-size: 0.95rem;
-            opacity: 0.85;
-            margin-top: 1rem;
-        }
-        
-        /* Main */
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2.5rem 1rem;
-            flex: 1;
-            width: 100%;
-        }
-        
-        /* Intro */
-        .intro {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            padding: 0 1rem;
-        }
-        
-        .intro p {
-            font-size: 1.15rem;
-            color: #555;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* Secciones por grado */
-        .secciones {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .seccion {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem 1.5rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border-top: 4px solid var(--azul-principal);
-        }
-        
-        .seccion:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-        }
-        
-        .seccion-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-claro) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-        }
-        
-        .seccion-icon svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
-        
-        .seccion h2 {
-            font-size: 1.2rem;
-            color: var(--azul-oscuro);
-            margin-bottom: 0.75rem;
-            font-family: Arial, sans-serif;
-        }
-        
-        .seccion p {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-            flex: 1;
-        }
-        
-        .btn-acceso {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-oscuro) 100%);
-            color: white;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-family: Arial, sans-serif;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(58,74,159,0.25);
-        }
-        
-        .btn-acceso:hover {
-            background: linear-gradient(135deg, var(--azul-claro) 0%, var(--azul-principal) 100%);
-            box-shadow: 0 5px 15px rgba(58,74,159,0.35);
-        }
-        
-        .btn-acceso svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-        
-        /* Grados específicos - bordes de color */
-        .seccion.general {
-            border-top-color: var(--dorado);
-        }
-        
-        .seccion.general .seccion-icon {
-            background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-claro) 100%);
-        }
-        
-        .seccion.aprendiz {
-            border-top-color: #43a047;
-        }
-        
-        .seccion.aprendiz .seccion-icon {
-            background: linear-gradient(135deg, #388e3c 0%, #66bb6a 100%);
-        }
-        
-        .seccion.companero {
-            border-top-color: #1976d2;
-        }
-        
-        .seccion.companero .seccion-icon {
-            background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
-        }
-        
-        .seccion.maestro {
-            border-top-color: #c62828;
-        }
-        
-        .seccion.maestro .seccion-icon {
-            background: linear-gradient(135deg, #b71c1c 0%, #e53935 100%);
-        }
-        
-        /* Nota */
-        .nota {
-            margin-top: 2.5rem;
-            padding: 1.25rem;
-            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
-            border-left: 4px solid var(--dorado);
-            border-radius: 0 8px 8px 0;
-            text-align: center;
-        }
-        
-        .nota p {
-            color: #856404;
-            font-size: 0.9rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--azul-oscuro);
-            color: white;
-            text-align: center;
-            padding: 1.5rem 1rem;
-            margin-top: auto;
-        }
-        
-        footer p {
-            font-size: 0.9rem;
-            opacity: 0.85;
-        }
-        
-        .oriente {
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            opacity: 0.7;
-        }
-        
-        /* Responsive */
-        @media (max-width: 600px) {
-            header {
-                padding: 2rem 1rem;
-            }
-            
-            .emblemas {
-                gap: 1.5rem;
-            }
-            
-            .emblema {
-                width: 80px;
-                height: 80px;
-            }
-            
-            header h1 {
-                font-size: 1.5rem;
-            }
-            
-            .subtitulo {
-                font-size: 1.2rem;
-            }
-            
-            .secciones {
-                grid-template-columns: 1fr;
-            }
-            
-            .seccion {
-                padding: 1.5rem 1.25rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca FyT No. 02 — Resp∴ Log∴ Simb∴ Fortaleza y Templanza</title>
+  <meta name="description" content="Repositorio digital de la Resp∴ Log∴ Simb∴ Fortaleza y Templanza No. 02 — Entidad Masónica Universal A.C.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-institucional: #4A4E9C;
+      --azul-oscuro: #2E3170;
+      --azul-profundo: #1A1D4E;
+      --dorado: #C9A84C;
+      --dorado-claro: #E3CB7A;
+      --crema: #FAF8F0;
+      --blanco: #FFFFFF;
+      --gris-texto: #3A3A3A;
+      --gris-suave: #6B6B6B;
+      --gris-borde: #E0DED6;
+      --sombra-sutil: 0 2px 20px rgba(74, 78, 156, 0.08);
+      --sombra-hover: 0 8px 32px rgba(74, 78, 156, 0.15);
+      --radio: 6px;
+      --transicion: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gris-texto);
+      background: var(--crema);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ═══════════ TEXTURA DE FONDO ═══════════ */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        radial-gradient(ellipse at 20% 50%, rgba(74, 78, 156, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ═══════════ HEADER ═══════════ */
+    .header {
+      background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-institucional) 60%, var(--azul-oscuro) 100%);
+      color: var(--blanco);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--dorado), var(--dorado-claro), var(--dorado));
+    }
+
+    /* Patrón geométrico sutil */
+    .header-pattern {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      opacity: 0.04;
+      background-image: 
+        linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+        linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+        linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+        linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff);
+      background-size: 80px 140px;
+      background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .header-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .header-logos img {
+      height: 72px;
+      width: auto;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+      border-radius: 50%;
+    }
+
+    .header-logos .logo-emu {
+      border-radius: 4px;
+      height: 44px;
+    }
+
+    .header-titulo {
+      font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 0.3rem;
+    }
+
+    .header-nombre {
+      font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .header-nombre em {
+      font-style: normal;
+      color: var(--dorado-claro);
+    }
+
+    .header-subtitulo {
+      font-size: 0.82rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    .header-linea-ritual {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      opacity: 0.5;
+      margin-top: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ═══════════ NAVEGACIÓN ═══════════ */
+    .nav-bar {
+      background: var(--blanco);
+      border-bottom: 1px solid var(--gris-borde);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    }
+
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .nav-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gris-suave);
+      text-decoration: none;
+      padding: 0.9rem 1.2rem;
+      transition: var(--transicion);
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--azul-institucional);
+      border-bottom-color: var(--dorado);
+    }
+
+    /* ═══════════ CONTENIDO PRINCIPAL ═══════════ */
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ═══════════ SECCIÓN BIENVENIDA ═══════════ */
+    .bienvenida {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+
+    .bienvenida h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--azul-oscuro);
+      margin-bottom: 0.8rem;
+    }
+
+    .bienvenida p {
+      font-size: 0.95rem;
+      color: var(--gris-suave);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .separador {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .separador::before,
+    .separador::after {
+      content: '';
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, var(--gris-borde), transparent);
+    }
+
+    .separador-icono {
+      color: var(--dorado);
+      font-size: 0.9rem;
+    }
+
+    /* ═══════════ TARJETAS DE CÁMARA ═══════════ */
+    .camaras-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .camara-card {
+      background: var(--blanco);
+      border: 1px solid var(--gris-borde);
+      border-radius: var(--radio);
+      padding: 1.8rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transicion);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .camara-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--card-accent, var(--azul-institucional));
+      transform: scaleY(0);
+      transition: var(--transicion);
+    }
+
+    .camara-card:hover {
+      box-shadow: var(--sombra-hover);
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+
+    .camara-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .camara-icono {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      background: var(--card-bg, rgba(74, 78, 156, 0.08));
+      color: var(--card-accent, var(--azul-institucional));
+    }
+
+    .camara-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .camara-grado {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--card-accent, var(--azul-institucional));
+      margin-bottom: 0.2rem;
+    }
+
+    .camara-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--azul-oscuro);
+      margin-bottom: 0.4rem;
+    }
+
+    .camara-desc {
+      font-size: 0.85rem;
+      color: var(--gris-suave);
+      line-height: 1.5;
+    }
+
+    .camara-flecha {
+      flex-shrink: 0;
+      align-self: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(74, 78, 156, 0.05);
+      color: var(--azul-institucional);
+      transition: var(--transicion);
+      font-size: 1.1rem;
+    }
+
+    .camara-card:hover .camara-flecha {
+      background: var(--azul-institucional);
+      color: var(--blanco);
+    }
+
+    /* Colores por grado */
+    .card-aprendiz { --card-accent: #4A4E9C; --card-bg: rgba(74, 78, 156, 0.08); }
+    .card-companero { --card-accent: #2D7D46; --card-bg: rgba(45, 125, 70, 0.08); }
+    .card-maestro { --card-accent: #8B2E2E; --card-bg: rgba(139, 46, 46, 0.08); }
+    .card-general { --card-accent: #7B6B3A; --card-bg: rgba(123, 107, 58, 0.08); }
+    .card-oficialidad { --card-accent: #5A3D7A; --card-bg: rgba(90, 61, 122, 0.08); }
+
+    /* ═══════════ SECCIÓN INFORMACIÓN ═══════════ */
+    .info-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gris-borde);
+    }
+
+    .info-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--azul-oscuro);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .info-item {
+      background: var(--blanco);
+      border: 1px solid var(--gris-borde);
+      border-radius: var(--radio);
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+    }
+
+    .info-item-icono {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-item-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gris-suave);
+      margin-bottom: 0.2rem;
+    }
+
+    .info-item-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--azul-oscuro);
+    }
+
+    /* ═══════════ AVISO ═══════════ */
+    .aviso {
+      margin-top: 2.5rem;
+      background: linear-gradient(135deg, rgba(74, 78, 156, 0.04), rgba(201, 168, 76, 0.04));
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: var(--radio);
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .aviso-icono {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .aviso p {
+      font-size: 0.85rem;
+      color: var(--gris-suave);
+      line-height: 1.6;
+    }
+
+    .aviso strong {
+      color: var(--azul-oscuro);
+    }
+
+    /* ═══════════ FOOTER ═══════════ */
+    .footer {
+      background: var(--azul-profundo);
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-linea {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-emu {
+      margin-top: 0.8rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .footer a {
+      color: var(--dorado-claro);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ═══════════ RESPONSIVE ═══════════ */
+    @media (min-width: 640px) {
+      .header-content { padding: 3rem 2rem 2.5rem; }
+      .header-nombre { font-size: 2.4rem; }
+      .header-logos img { height: 84px; }
+      .header-logos .logo-emu { height: 52px; }
+      .camaras-grid { gap: 1rem; }
+      .camara-card { padding: 2rem 2.5rem; }
+    }
+
+    @media (min-width: 768px) {
+      .header-content { padding: 3.5rem 2rem 3rem; }
+      .header-nombre { font-size: 2.6rem; }
+      .info-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* Mobile nav scroll */
+    @media (max-width: 639px) {
+      .nav-inner {
+        overflow-x: auto;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .nav-inner::-webkit-scrollbar { display: none; }
+      .nav-link { padding: 0.8rem 1rem; font-size: 0.72rem; }
+      .header-logos { gap: 1.2rem; }
+      .header-logos img { height: 56px; }
+      .header-logos .logo-emu { height: 36px; }
+      .header-nombre { font-size: 1.6rem; }
+      .header-titulo { font-size: 0.9rem; }
+      .camara-card { padding: 1.3rem 1.5rem; gap: 1rem; }
+      .camara-icono { width: 44px; height: 44px; font-size: 1.2rem; }
+      .camara-nombre { font-size: 1.1rem; }
+      .camara-flecha { display: none; }
+      .info-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    }
+
+    /* ═══════════ ANIMACIONES DE ENTRADA ═══════════ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="emblemas">
-                <img src="EMU.jpg" alt="Emblema EMU" class="emblema" onerror="this.style.display='none'">
-                <img src="FyT.jpg" alt="Escudo Fortaleza y Templanza" class="emblema" onerror="this.style.display='none'">
-            </div>
-            <p class="titulo-logia">Resp∴ Log∴ Simb∴</p>
-            <h1>Fortaleza y Templanza No. 02</h1>
-            <p class="subtitulo">Biblioteca Documental</p>
-            <p class="jurisdiccion">Or∴ de la Ciudad de México · Entidad Masónica Universal</p>
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header class="header">
+    <div class="header-pattern"></div>
+    <div class="header-content">
+      <div class="header-logos">
+        <img src="fyt-logo.jpg" alt="Escudo Fortaleza y Templanza No. 02" class="logo-fyt">
+        <img src="emu-logo.jpg" alt="Entidad Masónica Universal" class="logo-emu">
+      </div>
+      <div class="header-titulo">Resp∴ Log∴ Simb∴</div>
+      <h1 class="header-nombre"><em>Fortaleza y Templanza</em> No. 02</h1>
+      <div class="header-subtitulo">Entidad Masónica Universal A.C.</div>
+      <div class="header-linea-ritual">A∴L∴G∴D∴G∴A∴D∴U∴ — S∴F∴U∴ — R∴E∴A∴A∴</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ NAVEGACIÓN ═══════════ -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="#biblioteca" class="nav-link active">Biblioteca</a>
+      <a href="#informacion" class="nav-link">Información</a>
+      <a href="https://emu-ac.org/" class="nav-link" target="_blank" rel="noopener">EMU ↗</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════ CONTENIDO PRINCIPAL ═══════════ -->
+  <main class="main">
+
+    <!-- Bienvenida -->
+    <section class="bienvenida animate-in" id="biblioteca">
+      <h2>Biblioteca FyT No. 02</h2>
+      <p>Repositorio digital con documentos, materiales de estudio y recursos organizados por Cámara. Selecciona tu grado para acceder al contenido correspondiente.</p>
+    </section>
+
+    <div class="separador">
+      <span class="separador-icono">◆</span>
+    </div>
+
+    <!-- Tarjetas de acceso por Cámara -->
+    <section class="camaras-grid">
+
+      <a href="https://1drv.ms/f/c/134968144cc1eae8/IgC-PjF0HZJtSqoUHl7YUAqFAUYcIuu0q4KHUgvtTO9J7Zo?e=zOxzO6" 
+         class="camara-card card-general animate-in delay-1" target="_blank" rel="noopener">
+        <div class="camara-icono">📋</div>
+        <div class="camara-info">
+          <div class="camara-grado">Todos los grados</div>
+          <div class="camara-nombre">General</div>
+          <div class="camara-desc">Documentos administrativos, reglamentos, calendarios y comunicados para todos los miembros del taller.</div>
         </div>
-    </header>
+        <div class="camara-flecha">→</div>
+      </a>
+
+      <a href="https://1drv.ms/f/c/134968144cc1eae8/IgDjt-B_75DSSJv66iBxI5htAU-rYXOusDczd1YWC29amKw?e=zYeu67" 
+         class="camara-card card-aprendiz animate-in delay-2" target="_blank" rel="noopener">
+        <div class="camara-icono">🪨</div>
+        <div class="camara-info">
+          <div class="camara-grado">1ª Cámara — Grado 1°</div>
+          <div class="camara-nombre">Cámara de Aprendiz</div>
+          <div class="camara-desc">Materiales de instrucción, guías de estudio y recursos para el trabajo del grado de Aprendiz.</div>
+        </div>
+        <div class="camara-flecha">→</div>
+      </a>
+
+      <a href="https://1drv.ms/f/c/134968144cc1eae8/IgC4Q8vSz-CxS7ZAuxLL7pUwAdNfQiJUbHCk1f6kOiB5-D4?e=RUwtld" 
+         class="camara-card card-companero animate-in delay-3" target="_blank" rel="noopener">
+        <div class="camara-icono">⬡</div>
+        <div class="camara-info">
+          <div class="camara-grado">2ª Cámara — Grado 2°</div>
+          <div class="camara-nombre">Cámara de Compañero</div>
+          <div class="camara-desc">Materiales de instrucción, guías de estudio y recursos para el trabajo del grado de Compañero.</div>
+        </div>
+        <div class="camara-flecha">→</div>
+      </a>
+
+      <a href="https://1drv.ms/f/c/134968144cc1eae8/IgC-0ox7xZgoQ4CnOjX5m4lQASognAMTaseu8p3aI2ZkCJE?e=ymj1IZ" 
+         class="camara-card card-maestro animate-in delay-4" target="_blank" rel="noopener">
+        <div class="camara-icono">☉</div>
+        <div class="camara-info">
+          <div class="camara-grado">3ª Cámara — Grado 3°</div>
+          <div class="camara-nombre">Cámara de Maestro</div>
+          <div class="camara-desc">Materiales de instrucción, guías de estudio y recursos para el trabajo del grado de Maestro.</div>
+        </div>
+        <div class="camara-flecha">→</div>
+      </a>
+
+      <a href="https://1drv.ms/f/c/134968144cc1eae8/IgBgk12RRyhOT5Eqp53zHsGyAY64RCx2cxZTN9VhMSgQoYE?e=Jmamji" 
+         class="camara-card card-oficialidad animate-in delay-5" target="_blank" rel="noopener">
+        <div class="camara-icono">⚜</div>
+        <div class="camara-info">
+          <div class="camara-grado">Acceso restringido</div>
+          <div class="camara-nombre">Oficialidad</div>
+          <div class="camara-desc">Documentación reservada para Dignatarios y Oficiales del taller.</div>
+        </div>
+        <div class="camara-flecha">→</div>
+      </a>
+
+    </section>
+
+    <!-- Aviso -->
+    <div class="aviso">
+      <div class="aviso-icono">🔒</div>
+      <p>Actualmente el acceso es mediante enlace temporal compartido. Próximamente cada H∴ recibirá <strong>acceso individualizado</strong> a las carpetas correspondientes a su grado. Para ello, envía tu correo electrónico a Secretaría.</p>
+    </div>
+
+    <!-- Información -->
+    <section class="info-section" id="informacion">
+      <h3>Información del Taller</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-item-icono">🏛</div>
+          <div class="info-item-label">Rito</div>
+          <div class="info-item-value">R∴E∴A∴A∴</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icono">📍</div>
+          <div class="info-item-label">Oriente</div>
+          <div class="info-item-value">Ciudad de México</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icono">🏗</div>
+          <div class="info-item-label">Obediencia</div>
+          <div class="info-item-value">EMU A.C.</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icono">📅</div>
+          <div class="info-item-label">Año Masónico</div>
+          <div class="info-item-value">6026 E∴V∴</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
+    <div class="footer-linea">S∴F∴U∴</div>
+    <div>Resp∴ Log∴ Simb∴ «Fortaleza y Templanza» No. 02</div>
+    <div class="footer-emu">
+      <a href="https://emu-ac.org/" target="_blank" rel="noopener">Entidad Masónica Universal A.C.</a>
+    </div>
+    <div style="margin-top: 1rem; opacity: 0.4; font-size: 0.65rem;">
+      Or∴ de la Ciudad de México — 2026 E∴V∴
+    </div>
+  </footer>
+
+  <script>
+    // Resaltar nav activo según scroll
+    const sections = document.querySelectorAll('[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
     
-    <main>
-        <div class="intro">
-            <p>Repositorio institucional de documentos para los QQ∴HH∴ del Taller. Selecciona la sección correspondiente a tu Grado.</p>
-        </div>
-        
-        <div class="secciones">
-            <div class="seccion general">
-                <div class="seccion-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                </div>
-                <h2>General</h2>
-                <p>Reglamento, Principios Constitutivos EMU, Cuadro Logial y documentación institucional para todos los HH∴</p>
-                <a href="https://1drv.ms/f/c/134968144cc1eae8/IgC-PjF0HZJtSqoUHl7YUAqFAWS6aZjtxK37wjYUyKVZdD0?e=tl0bwV" class="btn-acceso">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Acceder
-                </a>
-            </div>
-            
-            <div class="seccion aprendiz">
-                <div class="seccion-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
-                </div>
-                <h2>Cámara de Aprendiz</h2>
-                <p>Liturgia del Primer Grado, catecismo y material de instrucción para AAp∴</p>
-                <a href="#LINK_APRENDIZ" class="btn-acceso">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Acceder
-                </a>
-            </div>
-            
-            <div class="seccion companero">
-                <div class="seccion-icon">
-                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                </div>
-                <h2>Cámara de Compañero</h2>
-                <p>Liturgia del Segundo Grado y material de instrucción para CComp∴</p>
-                <a href="#LINK_COMPANERO" class="btn-acceso">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Acceder
-                </a>
-            </div>
-            
-            <div class="seccion maestro">
-                <div class="seccion-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                </div>
-                <h2>Cámara de Maestro</h2>
-                <p>Liturgia del Tercer Grado, Planchas de Secretaría y documentación de Oficialidad para MM∴MM∴</p>
-                <a href="#LINK_MAESTRO" class="btn-acceso">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Acceder
-                </a>
-            </div>
-        </div>
-        
-        <div class="nota">
-            <p>Cada sección requiere permisos de acceso específicos. Si no puedes acceder, contacta al H∴ Secretario.</p>
-        </div>
-    </main>
-    
-    <footer>
-        <p>R∴L∴S∴ Fortaleza y Templanza No. 02</p>
-        <p class="oriente">Or∴ de la Ciudad de México · Entidad Masónica Universal</p>
-    </footer>
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
