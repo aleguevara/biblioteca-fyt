@@ -431,6 +431,160 @@
       color: var(--azul-oscuro);
     }
 
+    /* ═══════════ SECCIÓN SECRETARÍA ═══════════ */
+    .secretaria-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gris-borde);
+    }
+
+    .secretaria-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--azul-oscuro);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .secretaria-section .sec-subtitulo {
+      font-size: 0.85rem;
+      color: var(--gris-suave);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .secretaria-card {
+      background: var(--blanco);
+      border: 1px solid var(--gris-borde);
+      border-radius: var(--radio);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      transition: var(--transicion);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .secretaria-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--dorado);
+    }
+
+    .secretaria-qr {
+      flex-shrink: 0;
+      width: 140px;
+      height: 140px;
+      border-radius: var(--radio);
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(74, 78, 156, 0.1);
+    }
+
+    .secretaria-qr img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .secretaria-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .secretaria-info .sec-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dorado);
+      margin-bottom: 0.3rem;
+    }
+
+    .secretaria-info .sec-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--azul-oscuro);
+      margin-bottom: 0.5rem;
+    }
+
+    .secretaria-info .sec-desc {
+      font-size: 0.85rem;
+      color: var(--gris-suave);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .sec-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--azul-institucional);
+      color: var(--blanco);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--radio);
+      transition: var(--transicion);
+    }
+
+    .sec-btn:hover {
+      background: var(--azul-oscuro);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(74, 78, 156, 0.3);
+    }
+
+    .sec-pasos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .sec-paso {
+      text-align: center;
+      padding: 0.8rem 0.5rem;
+      background: rgba(74, 78, 156, 0.03);
+      border-radius: var(--radio);
+    }
+
+    .sec-paso-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--azul-institucional);
+      color: var(--blanco);
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .sec-paso-texto {
+      font-size: 0.72rem;
+      color: var(--gris-suave);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 639px) {
+      .secretaria-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+      }
+      .secretaria-qr { width: 160px; height: 160px; }
+      .sec-pasos { grid-template-columns: repeat(2, 1fr); }
+      .sec-btn { width: 100%; justify-content: center; }
+    }
+
     /* ═══════════ FOOTER ═══════════ */
     .footer {
       background: var(--azul-profundo);
@@ -527,8 +681,8 @@
     <div class="header-pattern"></div>
     <div class="header-content">
       <div class="header-logos">
-        <img src="FyT.jpg" alt="Escudo Fortaleza y Templanza No. 02" class="logo-fyt">
-        <img src="EMU.jpg" alt="Entidad Masónica Universal" class="logo-emu">
+        <img src="fyt-logo.jpg" alt="Escudo Fortaleza y Templanza No. 02" class="logo-fyt">
+        <img src="emu-logo.jpg" alt="Entidad Masónica Universal" class="logo-emu">
       </div>
       <div class="header-titulo">Resp∴ Log∴ Simb∴</div>
       <h1 class="header-nombre"><em>Fortaleza y Templanza</em> No. 02</h1>
@@ -541,6 +695,7 @@
   <nav class="nav-bar">
     <div class="nav-inner">
       <a href="#biblioteca" class="nav-link active">Biblioteca</a>
+      <a href="#secretaria" class="nav-link">Secretaría</a>
       <a href="#informacion" class="nav-link">Información</a>
       <a href="https://emu-ac.org/" class="nav-link" target="_blank" rel="noopener">EMU ↗</a>
     </div>
@@ -625,6 +780,46 @@
       <p>Actualmente el acceso es mediante enlace temporal compartido. Próximamente cada H∴ recibirá <strong>acceso individualizado</strong> a las carpetas correspondientes a su grado. Para ello, envía tu correo electrónico a Secretaría.</p>
     </div>
 
+    <!-- Secretaría -->
+    <section class="secretaria-section" id="secretaria">
+      <h3>Secretaría</h3>
+      <p class="sec-subtitulo">Herramientas digitales para el registro y la gestión del Taller.</p>
+
+      <div class="secretaria-card animate-in">
+        <div class="secretaria-qr">
+          <img src="qr-asistencia.png" alt="QR Registro de Asistencia">
+        </div>
+        <div class="secretaria-info">
+          <div class="sec-label">Registro digital</div>
+          <div class="sec-titulo">Registro de Asistencia</div>
+          <div class="sec-desc">
+            Escanea el código QR en Pasos Perdidos o usa el enlace para registrar tu presencia antes de cada Tenida. El registro toma menos de 30 segundos.
+          </div>
+          <a href="https://forms.cloud.microsoft/r/Qz48ZFqvBR" class="sec-btn" target="_blank" rel="noopener">
+            Abrir formulario →
+          </a>
+          <div class="sec-pasos">
+            <div class="sec-paso">
+              <div class="sec-paso-num">1</div>
+              <div class="sec-paso-texto">Escanea el QR con tu cámara</div>
+            </div>
+            <div class="sec-paso">
+              <div class="sec-paso-num">2</div>
+              <div class="sec-paso-texto">Selecciona tu nombre</div>
+            </div>
+            <div class="sec-paso">
+              <div class="sec-paso-num">3</div>
+              <div class="sec-paso-texto">Indica grado y modalidad</div>
+            </div>
+            <div class="sec-paso">
+              <div class="sec-paso-num">4</div>
+              <div class="sec-paso-texto">Envía — ¡listo!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Información -->
     <section class="info-section" id="informacion">
       <h3>Información del Taller</h3>
@@ -660,10 +855,6 @@
     <div>Resp∴ Log∴ Simb∴ «Fortaleza y Templanza» No. 02</div>
     <div class="footer-emu">
       <a href="https://emu-ac.org/" target="_blank" rel="noopener">Entidad Masónica Universal A.C.</a>
-    </div>
-    <div style="margin-top: 0.8rem; display: flex; justify-content: center; gap: 1.5rem;">
-      <a href="https://www.facebook.com/entidad.masonica.universal/" target="_blank" rel="noopener" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.05em; transition: color 0.3s;" onmouseover="this.style.color='#E3CB7A'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Facebook</a>
-      <a href="https://www.instagram.com/entidadmasonicauniversal/" target="_blank" rel="noopener" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.05em; transition: color 0.3s;" onmouseover="this.style.color='#E3CB7A'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Instagram</a>
     </div>
     <div style="margin-top: 1rem; opacity: 0.4; font-size: 0.65rem;">
       Or∴ de la Ciudad de México — 2026 E∴V∴
